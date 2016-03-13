@@ -17,7 +17,7 @@ th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
 <div class="container">
-<div th:if="${not #lists.isEmpty(products)}">
+<div th:if="${not #lists.isEmpty(customers)}">
 <h2>List of products</h2>
 <table class="table table-striped">
 <tr>
@@ -29,20 +29,26 @@ th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
 <th>Edit</th>
 <th>Delete</th>
 </tr>
-<tr th:each="product : ${products}">
-<td th:text ="${product.id}"></td>
-<td th:text="${product.description}"></td>
-<td th:text="${product.price}"></td>
-<td th:text="${product.imageUrl}"></td>
-<td><a th:href="${'/product/'+product.id}">View</a></td>
-<td><a th:href="${'/product/edit/'+product.id}">Edit</a></td>
-<td><a th:href="${'/product/delete/'+product.id}">Delete</a></td>
+<tr th:each="customer : ${customers}">
+<td th:text ="${customer.id}"></td>
+<td th:text="${customer.firstName}"></td>
+<td th:text="${customer.lastName}"></td>
+<td th:text="${customer.email}"></td>
+<td th:text="${customer.phoneNumber}"></td>
+<td th:text="${customer.addressLine1}"></td>
+<td th:text="${customer.addressLine2}"></td>
+<td th:text="${customer.city}"></td>
+<td th:text="${customer.state}"></td>
+<td th:text="${customer.zipCode}"></td>
+<td><a th:href="${'/customer/show/'+customer.id}">View</a></td>
+<td><a th:href="${'/customer/edit/'+customer.id}">Edit</a></td>
+<td><a th:href="${'/customer/delete/'+customer.id}">Delete</a></td>
 </tr>
 </table>
 </div>
 </div>
 <div class="container">
-<a th:href="${'/product/new'}">Add Product</a>
+<a th:href="${'/customer/new'}">Add Product</a>
 </div>
 </body>
 </html>
