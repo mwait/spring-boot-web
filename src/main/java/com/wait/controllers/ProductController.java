@@ -28,6 +28,11 @@ public class ProductController {
 		model.addAttribute("product", productService.getProductById(id));
 		return "product";	
 	}
+	@RequestMapping("product/edit/{id}")
+	public String editProduct(@PathVariable("id") Integer id, Model model){
+		model.addAttribute("product", productService.getProductById(id));
+		return "productform";
+	}
 	
 	@RequestMapping("/product/new")
 	public String addProduct(Model model){
@@ -39,5 +44,11 @@ public class ProductController {
 	public String saveOrUpdateProduct(Product product){
 		Product saveProduct = productService.saveOrUpdateProduct(product);
 		return "redirect:/product/"+saveProduct.getId();
+	}
+	
+	@RequestMapping(value="/product/delete/{id}")
+	public String delete(@PathVariable("id") Integer id){
+		productService.deleteProduct(id);
+		return "redirect:/products";
 	}
 }
