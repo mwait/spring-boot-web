@@ -23,8 +23,12 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public List<Product> listAllProducts() {
-	
 		return new ArrayList<>(products.values());
+	}
+	
+	@Override
+	public Product getProductById(Integer id) {
+		return products.get(id);
 	}
 	
 	private Map<Integer, Product> loadProducts(){
@@ -60,5 +64,7 @@ public class ProductServiceImpl implements ProductService{
 		
 		return products;
 	}
+
+
 
 }
