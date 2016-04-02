@@ -50,30 +50,30 @@ public class UserServiceJpaDaoImplTest {
         System.out.println(savedUser.getEncryptedPassword());
 
     }
-//
-//    @Test
-//    public void testSaveOfUserWithCustomer() throws Exception {
-//
-//        User user = new User();
-//
-//        user.setUsername("someusername");
-//        user.setPassword("myPassword");
-//
-//        Customer customer = new Customer();
-//        customer.setFirstName("Chevy");
-//        customer.setLastName("Chase");
-//
-//        user.setCustomer(customer);
-//
-//        User savedUser = userService.saveOrUpdate(user);
-//
-//        assert savedUser.getId() != null;
-//        assert savedUser.getVersion() != null;
-//        assert savedUser.getCustomer() != null;
-//        assert savedUser.getCustomer().getId() != null;
-//
-//    }
-//
+
+    @Test
+    public void testSaveOfUserWithCustomer() throws Exception {
+
+        User user = new User();
+
+        user.setUsername("someusername");
+        user.setPassword("myPassword");
+
+        Customer customer = new Customer();
+        customer.setFirstName("Franek");
+        customer.setLastName("Frankowski");
+
+        user.setCustomer(customer);
+
+        User savedUser = userService.saveOrUpdate(user);
+
+        assert savedUser.getId() != null;
+        assert savedUser.getVersion() != null;
+        assert savedUser.getCustomer() != null;
+        assert savedUser.getCustomer().getId() != null;
+
+    }
+
 //    @Test
 //    public void testAddCartToUser() throws Exception {
 //        User user = new User();
