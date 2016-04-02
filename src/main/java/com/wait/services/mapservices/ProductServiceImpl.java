@@ -1,4 +1,4 @@
-package com.wait.services;
+package com.wait.services.mapservices;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.wait.domain.DomainObject;
 import com.wait.domain.Product;
+import com.wait.services.ProductService;
 
 @Service
 @Profile("map")

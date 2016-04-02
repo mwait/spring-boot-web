@@ -1,4 +1,4 @@
-package com.wait.services;
+package com.wait.services.jpaservices;
 
 import java.util.List;
 
@@ -9,50 +9,43 @@ import javax.persistence.PersistenceUnit;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import com.wait.domain.Product;
+import com.wait.domain.Customer;
+import com.wait.services.CustomerService;
 
 @Service
 @Profile("jpadao")
-public class ProductServiceJapDaoImpl implements ProductService{
+public class CustomerServiceJpaDaoImpl extends AbstractJpaDaoService implements CustomerService{
 
-	private EntityManagerFactory emf;
-	
-	
-	@PersistenceUnit
-	public void setEmf(EntityManagerFactory emf) {
-		this.emf = emf;
+
+	@Override
+	public List<?> listAll() {
+		EntityManager em = emf.createEntityManager();
+		List<Customer> customers = em.createQuery("from Customer", Customer.class).getResultList();
+		return customers;
 	}
 
 	@Override
-	public List<Product> listAll() {
+	public Customer getById(Integer id) {
 		EntityManager em = emf.createEntityManager();
-		return em.createQuery("from Product", Product.class).getResultList();
+		return em.find(Customer.class, id);
 	}
 
 	@Override
-	public Product getById(Integer id) {
+	public Customer saveOrUpdate(Customer domainObject) {
 		EntityManager em = emf.createEntityManager();
-		return em.find(Product.class, id);
-	}
-
-	@Override
-	public Product saveOrUpdate(Product domainObject) {
-		EntityManager em = emf.createEntityManager();
-		
 		em.getTransaction().begin();
-		Product savedProduct = em.merge(domainObject);
+		Customer customer = em.merge(domainObject);
 		em.getTransaction().commit();
-		
-		return savedProduct;
+		return customer;
 	}
 
 	@Override
 	public void delete(Integer id) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		em.remove(em.find(Product.class, id));
+		em.remove(em.find(Customer.class, id));
 		em.getTransaction().commit();
 		
 	}
-
+	
 }

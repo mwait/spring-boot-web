@@ -1,4 +1,4 @@
-package com.wait.services;
+package com.wait.services.mapservices;
 
 import java.util.ArrayList;
 import java.util.Collections;
