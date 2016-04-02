@@ -9,6 +9,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
+import org.hibernate.action.internal.OrphanRemovalAction;
+
 @Entity
 public class User implements DomainObject{
 
@@ -26,6 +28,9 @@ public class User implements DomainObject{
 	
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})  //usuniecie usera nie bedzie skutkowalo usunieciem Customera
 	private Customer customer;
+	
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	private Cart cart;
 	
 	private String encryptedPassword;
 	private Boolean enabled = true;
@@ -72,8 +77,14 @@ public class User implements DomainObject{
 		this.customer = customer;
 		customer.setUser(this);   //kaźdy obiekt ma referencje do drugiego - bidirectional
 	}
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	
 	
-
+	
 
 }

@@ -1,5 +1,7 @@
 package com.wait.services;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +10,11 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.wait.config.JpaIntegrationConfig;
+import com.wait.domain.Cart;
+import com.wait.domain.CartDetail;
 import com.wait.domain.Customer;
+import com.wait.domain.Product;
 import com.wait.domain.User;
-
-import java.util.List;
 
 /**
  * Created by jt on 12/14/15.
@@ -74,78 +77,78 @@ public class UserServiceJpaDaoImplTest {
 
     }
 
-//    @Test
-//    public void testAddCartToUser() throws Exception {
-//        User user = new User();
-//
-//        user.setUsername("someusername");
-//        user.setPassword("myPassword");
-//
-//        user.setCart(new Cart());
-//
-//        User savedUser = userService.saveOrUpdate(user);
-//
-//        assert savedUser.getId() != null;
-//        assert savedUser.getVersion() != null;
-//        assert savedUser.getCart() != null;
-//        assert savedUser.getCart().getId() != null;
-//    }
-//
-//    @Test
-//    public void testAddCartToUserWithCartDetails() throws Exception {
-//        User user = new User();
-//
-//        user.setUsername("someusername");
-//        user.setPassword("myPassword");
-//
-//        user.setCart(new Cart());
-//
-//        List<Product> storedProducts = (List<Product>) productService.listAll();
-//
-//        CartDetail cartItemOne = new CartDetail();
-//        cartItemOne.setProduct(storedProducts.get(0));
-//        user.getCart().addCartDetail(cartItemOne);
-//
-//        CartDetail cartItemTwo = new CartDetail();
-//        cartItemTwo.setProduct(storedProducts.get(1));
-//        user.getCart().addCartDetail(cartItemTwo);
-//
-//        User savedUser = userService.saveOrUpdate(user);
-//
-//        assert savedUser.getId() != null;
-//        assert savedUser.getVersion() != null;
-//        assert savedUser.getCart() != null;
-//        assert savedUser.getCart().getId() != null;
-//        assert savedUser.getCart().getCartDetails().size() == 2;
-//    }
-//
-//    @Test
-//    public void testAddAndRemoveCartToUserWithCartDetails() throws Exception {
-//        User user = new User();
-//
-//        user.setUsername("someusername");
-//        user.setPassword("myPassword");
-//
-//        user.setCart(new Cart());
-//
-//        List<Product> storedProducts = (List<Product>) productService.listAll();
-//
-//        CartDetail cartItemOne = new CartDetail();
-//        cartItemOne.setProduct(storedProducts.get(0));
-//        user.getCart().addCartDetail(cartItemOne);
-//
-//        CartDetail cartItemTwo = new CartDetail();
-//        cartItemTwo.setProduct(storedProducts.get(1));
-//        user.getCart().addCartDetail(cartItemTwo);
-//
-//        User savedUser = userService.saveOrUpdate(user);
-//
-//        assert savedUser.getCart().getCartDetails().size() == 2;
-//
-//        savedUser.getCart().removeCartDetail(savedUser.getCart().getCartDetails().get(0));
-//
-//        userService.saveOrUpdate(savedUser);
-//
-//        assert savedUser.getCart().getCartDetails().size() == 1;
-//    }
+    @Test
+    public void testAddCartToUser() throws Exception {
+        User user = new User();
+
+        user.setUsername("someusername");
+        user.setPassword("myPassword");
+
+        user.setCart(new Cart());
+
+        User savedUser = userService.saveOrUpdate(user);
+
+        assert savedUser.getId() != null;
+        assert savedUser.getVersion() != null;
+        assert savedUser.getCart() != null;
+        assert savedUser.getCart().getId() != null;
+    }
+
+    @Test
+    public void testAddCartToUserWithCartDetails() throws Exception {
+        User user = new User();
+
+        user.setUsername("someusername");
+        user.setPassword("myPassword");
+
+        user.setCart(new Cart());
+
+        List<Product> storedProducts = (List<Product>) productService.listAll();
+
+        CartDetail cartItemOne = new CartDetail();
+        cartItemOne.setProduct(storedProducts.get(0));
+        user.getCart().addCartDetail(cartItemOne);
+
+        CartDetail cartItemTwo = new CartDetail();
+        cartItemTwo.setProduct(storedProducts.get(1));
+        user.getCart().addCartDetail(cartItemTwo);
+
+        User savedUser = userService.saveOrUpdate(user);
+
+        assert savedUser.getId() != null;
+        assert savedUser.getVersion() != null;
+        assert savedUser.getCart() != null;
+        assert savedUser.getCart().getId() != null;
+        assert savedUser.getCart().getCartDetails().size() == 2;
+    }
+
+    @Test
+    public void testAddAndRemoveCartToUserWithCartDetails() throws Exception {
+        User user = new User();
+
+        user.setUsername("someusername");
+        user.setPassword("myPassword");
+
+        user.setCart(new Cart());
+
+        List<Product> storedProducts = (List<Product>) productService.listAll();
+
+        CartDetail cartItemOne = new CartDetail();
+        cartItemOne.setProduct(storedProducts.get(0));
+        user.getCart().addCartDetail(cartItemOne);
+
+        CartDetail cartItemTwo = new CartDetail();
+        cartItemTwo.setProduct(storedProducts.get(1));
+        user.getCart().addCartDetail(cartItemTwo);
+
+        User savedUser = userService.saveOrUpdate(user);
+
+        assert savedUser.getCart().getCartDetails().size() == 2;
+
+        savedUser.getCart().removeCartDetail(savedUser.getCart().getCartDetails().get(0));
+
+        userService.saveOrUpdate(savedUser);
+
+        assert savedUser.getCart().getCartDetails().size() == 1;
+    }
 }
